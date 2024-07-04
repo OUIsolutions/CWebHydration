@@ -30,5 +30,6 @@ int CWebHyDrationBridge_get_int_arg(CWebHyDrationBridge *self);
 
 double CWebHyDrationBridge_get_double_arg(CWebHyDrationBridge *self);
 
+CTextStack *private_CWebHyDrationBridge_create_script(CWebHyDrationBridge *self);
 
 void private_CWebHyDrationBridge_free(CWebHyDrationBridge *self);

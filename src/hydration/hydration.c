@@ -1,0 +1,40 @@
+
+
+CWebHyDration * newCWebHyDration(CwebHttpRequest *request) {
+    CWebHyDration *self = (CWebHyDration*)malloc(sizeof(CWebHyDration));
+    self->request =  request;
+    return self;
+}
+
+CWebHyDrationBridge * CWebHyDration_create_bridge(CWebHyDration *self,const char *route) {
+    CWebHyDrationBridge *created = private_newCWebHyDrationBridge(route,self->request);
+    privateCWebHyDrationBridgeArray_append(self->all_bridges,created);
+    return created;
+}
+
+char *CWebHyDration_create_script(CWebHyDration *self) {
+
+
+    if(self->script_text) {
+        CTextStack_free(self->script_text);
+    }
+
+   self->script_text = newCTextStack_string_empty();
+
+    for(int i =0; i < self->all_bridges->size;i++) {
+        CWebHyDrationBridge *current = self->all_bridges->elments[i];
+        CTextStack *created_code =private_CWebHyDrationBridge_create_script(current);
+        CTextStack_format(self->script_text,"%tc",created_code);
+    }
+    return self->script_text->rendered_text;
+
+}
+
+void CWebHyDration_free(CWebHyDration *self) {
+    if(self->script_text) {
+        CTextStack_free(self->script_text);
+    }
+
+    privateCWebHyDrationBridgeArray_free(self->all_bridges);
+    free(self);
+}

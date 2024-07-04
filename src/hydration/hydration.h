@@ -1,6 +1,8 @@
 
 
 typedef struct CWebHyDration {
+    CwebHttpRequest *request;
+    CTextStack *script_text;
     privateCWebHyDrationBridgeArray *all_bridges;
 
 }CWebHyDration;
