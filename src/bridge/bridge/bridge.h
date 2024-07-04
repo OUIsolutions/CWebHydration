@@ -6,6 +6,7 @@ typedef struct  CWebHyDrationBridge {
     char *error_key;
     int error_code;
     CwebHttpRequest *request;
+    privateCWebEntrieArray *entries;
 }CWebHyDrationBridge;
 
 CWebHyDrationBridge *private_newCWebHyDrationBridge(const char *route,CwebHttpRequest *request);
