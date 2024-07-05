@@ -2,6 +2,7 @@
 
 typedef struct  CWebHyDrationBridge {
     char *route;
+    char *name;
     char *error;
     char *error_key;
     int error_code;
@@ -9,7 +10,10 @@ typedef struct  CWebHyDrationBridge {
     privateCWebEntrieArray *entries;
 }CWebHyDrationBridge;
 
-CWebHyDrationBridge *private_newCWebHyDrationBridge(const char *route,CwebHttpRequest *request);
+CWebHyDrationBridge *private_newCWebHyDrationBridge(
+    const char *name,
+    const char *route,
+    CwebHttpRequest *request);
 
 bool   CWebHyDrationBridge_is_the_route(CWebHyDrationBridge *self);
 
@@ -20,7 +24,6 @@ char * CWebHyDrationBridge_get_error_menssage(CWebHyDrationBridge *self);
 char * CWebHyDrationBridge_get_error_key(CWebHyDrationBridge *self);
 
 int  CWebHyDrationBridge_get_error_code(CWebHyDrationBridge *self);
-
 
 char *CWebHyDrationBridge_get_string_arg(CWebHyDrationBridge *self);
 

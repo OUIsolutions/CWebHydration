@@ -2,12 +2,14 @@
 
 CWebHyDration * newCWebHyDration(CwebHttpRequest *request) {
     CWebHyDration *self = (CWebHyDration*)malloc(sizeof(CWebHyDration));
+    *self = (CWebHyDration){0};
+    self->all_bridges = private_new_privateCWebHyDrationBridgeArray();
     self->request =  request;
     return self;
 }
 
-CWebHyDrationBridge * CWebHyDration_create_bridge(CWebHyDration *self,const char *route) {
-    CWebHyDrationBridge *created = private_newCWebHyDrationBridge(route,self->request);
+CWebHyDrationBridge * CWebHyDration_create_bridge(CWebHyDration *self,const char *route,char *name) {
+    CWebHyDrationBridge *created = private_newCWebHyDrationBridge(name,route,self->request);
     privateCWebHyDrationBridgeArray_append(self->all_bridges,created);
     return created;
 }
