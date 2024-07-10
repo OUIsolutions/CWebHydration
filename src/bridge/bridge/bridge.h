@@ -5,9 +5,10 @@ typedef struct  CWebHyDrationBridge {
     char *name;
     char *error;
     char *error_key;
-    int error_code;
+    int error_type;
+    CwebStringArray *elements;
     CwebHttpRequest *request;
-    privateCWebEntrieArray *entries;
+
 }CWebHyDrationBridge;
 
 CWebHyDrationBridge *private_newCWebHyDrationBridge(

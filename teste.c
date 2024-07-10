@@ -10,11 +10,12 @@ CwebHttpResponse *server(CwebHttpRequest *request) {
 
     CWebHyDrationBridge *increment = CWebHyDration_create_bridge(hy,"/increment",NULL);
 
+
     if(CWebHyDrationBridge_is_the_route(increment)) {
-        long num = CWebHyDration_get_num(hy,"num");
+        long num = CWebHyDration_get_num(increment,"num");
 
         if(CWebHyDration_error(hy)) {
-            char *error = CWebHydration_get_error(hy);
+            char *error = CWebHydration_get_error(increment);
             return  cweb.response.send_text(error,404);
         }
 
@@ -22,16 +23,18 @@ CwebHttpResponse *server(CwebHttpRequest *request) {
         CTextScope(text,CTEXT_H3,{
             CTextFormat(text,"%d",num + num);
         })
-
-        CWebHyDration_replace_id_with_ctext_cleaning_memory("h3",text);
-
+        CWebHyDration_replace_id_with_ctext_cleaning_memory(increment,"h3",text);
+        CwebHttpResponse *response = CWebHyDration_create_response(increment);
+        CWebHyDration_free(hy);
+        return response;
     }
+
 
     CTextStack * text = newCTextStack(CTEXT_LINE_BREAKER,CTEXT_SEPARATOR);
     CTextScope(text,CTEXT_BODY,{
 
         CTextScope(text,CTEXT_H3,{
-            CTextFormat(text,"%d",0);
+            CTextFormat(text,"id='%d'",0);
         })
         CTextScope(text,CTEXT_BUTTON,{
             CTextFormat(text,"increment");
