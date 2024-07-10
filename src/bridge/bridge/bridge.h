@@ -8,7 +8,9 @@ typedef struct  CWebHyDrationBridge {
     int error_type;
     CwebStringArray *callbacks;
     CwebHttpRequest *request;
-
+    cJSON *response;
+    int max_body_size;
+    cJSON *body;
 }CWebHyDrationBridge;
 
 
