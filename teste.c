@@ -49,7 +49,7 @@ int main(int argc, char *argv[]){
     stack = newCTextNamespace();
     CWebHyDration *hy = newCWebHyDration(NULL);
     CWebHyDrationBridge *increment = CWebHyDration_create_bridge(hy,"/increment",NULL);
-    CWebHyDrationBridge_add_function(increment,"get_input_id","'num'");
+    CWebHyDrationBridge_add_input_by_id(increment,"num");
     char* script  = CWebHyDration_create_script(hy);
     printf("%s\n",script);
     return 0;

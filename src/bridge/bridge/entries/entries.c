@@ -17,3 +17,6 @@ void CWebHyDrationBridge_add_function(CWebHyDrationBridge *self,const char *func
     CTextStack_free(code);
     free(result);
 }
+void CWebHyDrationBridge_add_input_by_id(CWebHyDrationBridge *self,const char *id) {
+    CWebHyDrationBridge_add_function(self,PRIVATE_CWEB_HYDRATION_GET_INPUT_BY_ID,"'%s'",id);
+}
