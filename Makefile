@@ -1,5 +1,6 @@
 
 BUILD = "build.out"
+PRE_BUILD = "pre_build.sh"
 MAIN = "teste.c"
 OUT ?= "exec.out"
 
@@ -18,6 +19,6 @@ execute:
 	@./${OUT}
 	@echo ""
 
-buld:
-	@sh pre_builde.sh
+build_sh:
+	@sh ${PRE_BUILD}
 	@echo ""
