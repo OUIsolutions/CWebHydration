@@ -28,7 +28,7 @@ CTextStack *private_CWebHyDrationBridge_create_script(CWebHyDrationBridge *self)
     else {
         CTextStack *formatted_name = newCTextStack_string(self->route);
         CTextStack_self_replace(formatted_name,"/","");
-        CTextStack_format(function,"%tc",formatted_name);
+        CTextStack_format(function,"%tc(args)",formatted_name);
     }
     CTextStack_format(function,"{\n");
     CTextStack_format(function,"\tlet body = {}\n");
