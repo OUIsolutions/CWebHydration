@@ -3,7 +3,7 @@
 #include "src/one.c"
 CwebNamespace cweb;
 CTextNamespace stack;
-
+/*
 CwebHttpResponse *server(CwebHttpRequest *request) {
 
     CWebHyDration *hy = newCWebHyDration(request);
@@ -43,10 +43,12 @@ CwebHttpResponse *server(CwebHttpRequest *request) {
 
     return  cweb.response.send_rendered_CTextStack_cleaning_memory(text,200);
 }
+*/
 int main(int argc, char *argv[]){
     cweb = newCwebNamespace();
     stack = newCTextNamespace();
-
+    CWebHyDration *hy = newCWebHyDration(NULL);
+    CWebHyDrationBridge *ponte = CWebHyDration_create_bridge(hy,"/increment",NULL);
     char* script  = CWebHyDration_create_script(hy);
     printf("%s\n",script);
     return 0;

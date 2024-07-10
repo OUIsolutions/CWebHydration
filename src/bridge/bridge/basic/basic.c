@@ -11,6 +11,7 @@ CWebHyDrationBridge *private_newCWebHyDrationBridge(
     }
     self->route = strdup(route);
     self->request = request;
+	self->callback = privae
     return  self;
 }
 
