@@ -33,7 +33,10 @@ void CWebHyDration_request_text_content_by_id(CWebHyDrationBridge *self, const c
 
     CWebHyDration_add_function(self, PRIVATE_CWEB_HYDRATION_GET_TEXT_CONTENT_BY_ID ,"'%s'", id);
 }
+void CWebHyDration_request_number_text_content_by_id(CWebHyDrationBridge *self, const char *id) {
+    CWebHyDration_add_function(self, PRIVATE_CWEB_HYDRATION_GET_NUMBER_TEXT_CONTENT_BY_ID ,"'%s'", id);
 
+}
 void CWebHyDration_add_input_by_all_id(CWebHyDrationBridge *self, const char *id) {
 
     CWebHyDration_add_function(self, PRIVATE_CWEB_HYDRATION_GET_INPUT_BY_ALL_ID, "'%s'", id);

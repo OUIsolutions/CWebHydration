@@ -9,7 +9,7 @@ CwebHttpResponse *main_sever(CwebHttpRequest *request) {
 
     CWebHyDration *hydration = hy.newHyDration(request);
     CWebHyDrationBridge *increment = hy.create_bridge(hydration,"/increment",NULL);
-    hy.request_text_content_by_id(increment, "num");
+    hy.request_number_text_content_by_id(increment, "num");
 
     if(hy.is_the_route(increment)) {
         long num = hy.read_long(increment,"num");

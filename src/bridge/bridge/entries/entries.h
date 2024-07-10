@@ -8,6 +8,8 @@ void CWebHyDration_add_input_checkbox_by_id(CWebHyDrationBridge *self, const cha
 
 void CWebHyDration_request_text_content_by_id(CWebHyDrationBridge *self, const char *id);
 
+void CWebHyDration_request_number_text_content_by_id(CWebHyDrationBridge *self, const char *id);
+
 void CWebHyDration_add_input_by_all_id(CWebHyDrationBridge *self, const char *id);
 
 void CWebHyDration_add_input_checkbox_by_all_id(CWebHyDrationBridge *self, const char *id);

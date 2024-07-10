@@ -5,16 +5,14 @@
     <title>Title</title>
 </head>
 <body>
-        <input teste="aa">
-        <input teste="a1">
-        <input teste="a2">
-        <input teste="aw">
-        <input type="checkbox">
-        <button onclick=""></button>
-        <button type="submit">Submit</button>
-        <button type="menu">Submit</button>
-        <button type="reset">Submit</button>
-        <button type="submit">Submit</button>
+    <h3 id="num">teste</h3>
 
+        <script>
+               let h = document.getElementById("num");
+               let father = h.parentNode;
+               let fragment = document.createElement("div");
+               fragment.innerHTML ="<h4>aaa</h4>"
+               father.replaceChild(fragment,h)
+        </script>
 </body>
 </html>

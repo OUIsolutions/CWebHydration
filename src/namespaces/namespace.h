@@ -16,6 +16,7 @@ typedef struct CWebHydrationNamespace{
     void (*add_input_by_id)(CWebHyDrationBridge *self,const char *id);
     void (*add_input_checkbox_by_id)(CWebHyDrationBridge *self, const char *id);
     void (*request_text_content_by_id)(CWebHyDrationBridge *self, const char *id);
+    void (*request_number_text_content_by_id)(CWebHyDrationBridge *self, const char *id);
     void (*add_input_by_all_id)(CWebHyDrationBridge *self, const char *id);
     void (*add_input_checkbox_by_all_id)(CWebHyDrationBridge *self, const char *id);
     void (*request_text_content_by_all_id)(CWebHyDrationBridge *self, const char *id);

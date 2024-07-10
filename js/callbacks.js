@@ -44,6 +44,7 @@ private_cweb_callbacks.private_cweb_hydration_replace_by_id = function (args){
         return ;
     }
     let father = element.parentNode;
-    let new_node = document.createTextNode(args.html)
-    father.replaceChild(element,new_node);
+    let new_node = document.createElement("template");
+    new_node.innerHTML= args.html;
+    father.replaceChild(new_node,element);
 }

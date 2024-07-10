@@ -16,6 +16,8 @@ CWebHydrationNamespace newCWebHydrationNamespace() {
     self.add_input_by_id = CWebHyDration_add_input_by_id;
     self.add_input_checkbox_by_id = CWebHyDration_add_input_checkbox_by_id;
     self.request_text_content_by_id = CWebHyDration_request_text_content_by_id;
+    self.request_number_text_content_by_id = CWebHyDration_request_number_text_content_by_id;
+
     self.add_input_by_all_id = CWebHyDration_add_input_by_all_id;
     self.add_input_checkbox_by_all_id = CWebHyDration_add_input_checkbox_by_all_id;
     self.request_text_content_by_all_id = CWebHyDration_request_text_content_by_all_id;
