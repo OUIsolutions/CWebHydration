@@ -26,7 +26,7 @@ void CWebHyDration_add_input_by_id(CWebHyDrationBridge *self, const char *id) {
 
 void CWebHyDration_add_input_checkbox_by_id(CWebHyDrationBridge *self, const char *id){
 
-    CWebHyDration_add_function(self, PRIVATE_CWEB_HYDRATION_GET_INPUT_CHECKBOX_BY_ID ,"'%s'", id);
+    CWebHyDration_add_function(self, PRIVATE_CWEB_HYDRATION_GET_INPUT_CHECBOX_BY_ID ,"'%s'", id);
 }
 
 void CWebHyDration_request_text_content_by_id(CWebHyDrationBridge *self, const char *id){
