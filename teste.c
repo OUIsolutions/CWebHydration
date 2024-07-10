@@ -21,7 +21,7 @@ CwebHttpResponse *main_sever(CwebHttpRequest *request) {
         }
 
         CTextStack * text = newCTextStack(CTEXT_LINE_BREAKER,CTEXT_SEPARATOR);
-        CTextScope(text,CTEXT_H3){
+        CText$Scope(text,CTEXT_H3,"id='num'"){
             stack.format(text,"%d",num + 1);
         }
 
@@ -53,7 +53,7 @@ int main(int argc, char *argv[]){
     cweb = newCwebNamespace();
     stack = newCTextStackModule();
     hy = newCWebHydrationNamespace();
-    struct CwebServer server = newCwebSever(5000, main_sever);
+    struct CwebServer server = newCwebSever(5001, main_sever);
     cweb.server.start(&server);
     return 0;
 
