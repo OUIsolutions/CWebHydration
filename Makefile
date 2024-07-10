@@ -7,10 +7,17 @@ OUT ?= "exec.out"
 ALL: pre_compile compile execute
 
 pre_compile:
-	./${BUILD}
+	@./${BUILD}
+	@echo ""
 
 compile:
-	gcc ${MAIN} -o ${OUT}
+	@gcc ${MAIN} -o ${OUT}
+	@echo ""
 
 execute:
-	./${OUT}
+	@./${OUT}
+	@echo ""
+
+buld:
+	@sh pre_builde.sh
+	@echo ""
