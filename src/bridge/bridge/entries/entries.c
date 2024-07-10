@@ -29,7 +29,7 @@ void CWebHyDrationBridge_add_input_checkbox_by_id(CWebHyDrationBridge *self, con
     CWebHyDrationBridge_add_function(self, PRIVATE_CWEB_HYDRATION_GET_INPUT_CHECKBOX_BY_ID ,"'%s'", id);
 }
 
-void CWebHyDrationBridge_request_text_cont_by_id(CWebHyDrationBridge *self, const char *id){
+void CWebHyDrationBridge_request_text_content_by_id(CWebHyDrationBridge *self, const char *id){
 
     CWebHyDrationBridge_add_function(self, PRIVATE_CWEB_HYDRATION_GET_TEXT_CONTENT_BY_ID ,"'%s'", id);
 }
@@ -44,7 +44,7 @@ void CWebHyDrationBridge_add_input_checkbox_by_all_id(CWebHyDrationBridge *self,
     CWebHyDrationBridge_add_function(self, PRIVATE_CWEB_HYDRATION_GET_INPUT_CHECKBOX_BY_ALL_ID, "'%s'", id);
 }
 
-void CWebHyDrationBridge_request_text_cont_by_all_id(CWebHyDrationBridge *self, const char *id){
+void CWebHyDrationBridge_request_text_content_by_all_id(CWebHyDrationBridge *self, const char *id){
 
     CWebHyDrationBridge_add_function(self, PRIVATE_CWEB_HYDRATION_GET_TEXT_CONTENT_BY_ALL_ID ,"'%s'", id);
 }
