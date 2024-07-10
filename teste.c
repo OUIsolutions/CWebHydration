@@ -44,11 +44,12 @@ CwebHttpResponse *server(CwebHttpRequest *request) {
     return  cweb.response.send_rendered_CTextStack_cleaning_memory(text,200);
 }
 */
+CWebHydrationNamespace h;
 int main(int argc, char *argv[]){
     cweb = newCwebNamespace();
     stack = newCTextNamespace();
-    CWebHyDration *hy = newCWebHyDration(NULL);
-    CWebHyDrationBridge *increment = CWebHyDration_create_bridge(hy,"/increment",NULL);
+    CWebHyDration *hy = h.newHyDration(NULL);
+    CWebHyDrationBridge *increment = h.create_bridge(hy,"/increment",NULL);
     CWebHyDration_add_input_by_id(increment,"num");
     char* script  = CWebHyDration_create_script(hy);
     printf("%s\n",script);
