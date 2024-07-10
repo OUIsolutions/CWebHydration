@@ -39,7 +39,7 @@ CwebHttpResponse *main_sever(CwebHttpRequest *request) {
         CTextScope(text,CTEXT_H3){
             stack.text(text,"id='num'");
         }
-        CTextScope(text,CTEXT_BUTTON){
+        CText$Scope(text,CTEXT_BUTTON,"onclick='%s'",hy.call(increment,NULL)){
              stack.text(text,"increment");
         }
     }
@@ -53,7 +53,7 @@ int main(int argc, char *argv[]){
     cweb = newCwebNamespace();
     stack = newCTextStackModule();
     hy = newCWebHydrationNamespace();
-    struct CwebServer server = newCwebSever(5000, main_sever);
+    struct CwebServer server = newCwebSever(5001, main_sever);
     cweb.server.start(&server);
     return 0;
 
