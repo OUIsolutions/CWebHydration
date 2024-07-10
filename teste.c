@@ -2,56 +2,59 @@
 #include "CWebStudio.h"
 #include "src/one.c"
 CwebNamespace cweb;
-CTextNamespace stack;
-/*
-CwebHttpResponse *server(CwebHttpRequest *request) {
+CTextStackModule stack;
+CWebHydrationNamespace hy;
 
-    CWebHyDration *hy = newCWebHyDration(request);
+CwebHttpResponse *main_sever(CwebHttpRequest *request) {
 
-    CWebHyDrationBridge *increment = CWebHyDration_create_bridge(hy,"/increment",NULL);
+    CWebHyDration *hydration = hy.newHyDration(request);
+    CWebHyDrationBridge *increment = hy.create_bridge(hydration,"/increment",NULL);
 
 
-    if(CWebHyDrationBridge_is_the_route(increment)) {
-        long num = CWebHyDration_get_num(increment,"num");
+    if(hy.is_the_route(increment)) {
+        long num = hy.read_long(increment,"num");
 
-        if(CWebHyDration_error(hy)) {
-            char *error = CWebHydration_get_error(increment);
-            return  cweb.response.send_text(error,404);
+        if(hy.error(increment)) {
+            CwebHttpResponse*response = hy.generate_error_response(increment);
+            hy.free(hydration);
+            return response;
         }
 
         CTextStack * text = newCTextStack(CTEXT_LINE_BREAKER,CTEXT_SEPARATOR);
-        CTextScope(text,CTEXT_H3,{
-            CTextFormat(text,"%d",num + num);
-        })
-        CWebHyDration_replace_id_with_ctext_cleaning_memory(increment,"h3",text);
-        CwebHttpResponse *response = CWebHyDration_create_response(increment);
-        CWebHyDration_free(hy);
+        CTextScope(text,CTEXT_H3){
+            stack.format(text,"%d",num + num);
+        }
+
+        hy.replace_element_by_id_with_ctext_stack_cleaning_memory(increment,"h3",text);
+        CwebHttpResponse *response = hy.generate_response(increment);
         return response;
     }
 
 
-    CTextStack * text = newCTextStack(CTEXT_LINE_BREAKER,CTEXT_SEPARATOR);
-    CTextScope(text,CTEXT_BODY,{
-
-        CTextScope(text,CTEXT_H3,{
-            CTextFormat(text,"id='%d'",0);
-        })
-        CTextScope(text,CTEXT_BUTTON,{
-            CTextFormat(text,"increment");
-        })
-    })
-
+    CTextStack * text = stack.newStack(CTEXT_LINE_BREAKER,CTEXT_SEPARATOR);
+    CTextScope(text,CTEXT_BODY){
+        CTextScope(text,CTEXT_SCRIPT) {
+           stack.format(text,hy.create_script(hydration));
+        }
+        CTextScope(text,CTEXT_H3){
+            stack.text(text,"id='num'");
+        }
+        CTextScope(text,CTEXT_BUTTON){
+             stack.text(text,"increment");
+        }
+    }
+    hy.free(hydration);
     return  cweb.response.send_rendered_CTextStack_cleaning_memory(text,200);
 }
-*/
+
+
 CWebHydrationNamespace h;
 int main(int argc, char *argv[]){
     cweb = newCwebNamespace();
-    stack = newCTextNamespace();
-    CWebHyDration *hy = h.newHyDration(NULL);
-    CWebHyDrationBridge *increment = h.create_bridge(hy,"/increment",NULL);
-    CWebHyDration_add_input_by_id(increment,"num");
-    char* script  = CWebHyDration_create_script(hy);
-    printf("%s\n",script);
+    stack = newCTextStackModule();
+    hy = newCWebHydrationNamespace();
+    struct CwebServer server = newCwebSever(5000, main_sever);
+    cweb.server.start(&server);
     return 0;
+
 }

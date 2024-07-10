@@ -9,7 +9,7 @@ CWebHydrationNamespace newCWebHydrationNamespace() {
     self.newHyDration = newCWebHyDration;
     //bridge
     //basic
-    self.Bridge_is_the_route = CWebHyDrationBridge_is_the_route;
+    self.is_the_route = CWebHyDrationBridge_is_the_route;
     //entries
     self.add_function = CWebHyDration_add_function;
     self.add_input_by_id = CWebHyDration_add_input_by_id;
@@ -29,6 +29,14 @@ CWebHydrationNamespace newCWebHydrationNamespace() {
     self.alert = CWebHyDration_alert;
     self.destroy_by_id = CWebHyDration_destroy_by_id;
     self.replace_element_by_id_with_ctext_stack_cleaning_memory = CWebHyDration_replace_element_by_id_with_ctext_stack_cleaning_memory;
+    self.generate_response = CWebHyDration_generate_response;
+    //error
+    self.error = CWebHyDration_error;
+    self.get_error_menssage= CWebHyDration_get_error_menssage;
+    self.get_error_key = CWebHyDration_get_error_key;
+    self.get_error_code =CWebHyDration_get_error_code;
+    self.generate_error_response = CWebHyDration_generate_error_response;
+
     return self;
 }
 
