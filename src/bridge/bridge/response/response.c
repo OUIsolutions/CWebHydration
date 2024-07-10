@@ -40,3 +40,6 @@ void CWebHyDration_replace_element_by_id_with_ctext_stack_cleaning_memory(CWebHy
     CTextStack_free(html);
 }
 
+CwebHttpResponse * CWebHyDration_generate_response(CWebHyDrationBridge *self) {
+    return cweb_send_cJSON(self->response,200);
+}

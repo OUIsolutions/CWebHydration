@@ -10,3 +10,4 @@ void CWebHyDration_destroy_by_id(CWebHyDrationBridge *self,const char *id);
 
 void CWebHyDration_replace_element_by_id_with_ctext_stack_cleaning_memory(CWebHyDrationBridge *self,const char *id,CTextStack *stack);
 
+CwebHttpResponse * CWebHyDration_generate_response(CWebHyDrationBridge *self);
