@@ -37,7 +37,7 @@ if(element == NULL) {\
 \
 if(!check_type(element)) {\
      self->error_type = CWEB_HYDRATION_KEY_WRONG_TYPE;\
-     self->error = private_CWebHydration_format(CWEB_HYDRATION_KEY_NOT_PROVIDED_MSG,expected_type);\
+     self->error = private_CWebHydration_format(CWEB_HYDRATION_KEY_NOT_TYPE,expected_type);\
      self->error_key = strdup(name_formmated);\
      free(name_formmated);\
      return error_return;\
