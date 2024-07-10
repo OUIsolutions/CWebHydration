@@ -3,3 +3,4 @@
 #include "entries/entries.h"
 #include "response/response.h"
 #include "read/read.h"
+#include "error/error.h"
