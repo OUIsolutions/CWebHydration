@@ -1,1 +1,12 @@
 #define PRIVATE_CWEB_HYDRATION_GET_INPUT_BY_ID "private_cweb_hydration_get_input_by_id"
+
+#define PRIVATE_CWEB_HYDRATION_GET_INPUT_CHECBOX_BY_ID "private_cweb_hydration_get_input_checkbox_by_id"
+
+#define PRIVATE_CWEB_HYDRATION_GET_TEXT_CONTENT_BY_ID "private_cweb_hydration_get_text_content_by_id"
+
+#define PRIVATE_CWEB_HYDRATION_GET_INPUT_BY_ALL_ID "private_cweb_hydration_get_input_by_all_id"
+
+#define PRIVATE_CWEB_HYDRATION_GET_INPUT_CHECKBOX_BY_ALL_ID "private_cweb_hydration_get_input_checkbox_by_all_id"
+
+#define PRIVATE_CWEB_HYDRATION_GET_TEXT_CONTENT_BY_ALL_ID "private_cweb_hydration_get_text_content_by_all_id"
+
