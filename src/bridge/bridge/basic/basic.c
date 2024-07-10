@@ -46,5 +46,17 @@ void private_CWebHyDrationBridge_free(CWebHyDrationBridge *self) {
     if(self->name) {
         free(self->name);
     }
+
+    if(self->error) {
+        free(self->error);
+    }
+    if(self->error_key) {
+        free(self->error_key);
+    }
+
+    if(self->response) {
+        cJSON_free(self->response);
+    }
+    CwebStringArray_free(self->callbacks);
     free(self);
 }

@@ -16,14 +16,11 @@ CWebHyDrationBridge * CWebHyDration_create_bridge(CWebHyDration *self,const char
 
 char *CWebHyDration_create_script(CWebHyDration *self) {
 
-
-
     if(self->script_text) {
         CTextStack_free(self->script_text);
     }
 
-   self->script_text = newCTextStack_string_empty();
-
+    self->script_text = newCTextStack_string_empty();
     CTextStack_format(self->script_text,"%s",JS_CONTENT);
 
     for(int i =0; i < self->all_bridges->size;i++) {
@@ -39,7 +36,6 @@ void CWebHyDration_free(CWebHyDration *self) {
     if(self->script_text) {
         CTextStack_free(self->script_text);
     }
-
     privateCWebHyDrationBridgeArray_free(self->all_bridges);
     free(self);
 }
