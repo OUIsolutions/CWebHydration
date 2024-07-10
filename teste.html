@@ -9,10 +9,8 @@
 
         <script>
                let h = document.getElementById("num");
-               let father = h.parentNode;
-               let fragment = document.createElement("div");
-               fragment.innerHTML ="<h4>aaa</h4>"
-               father.replaceChild(fragment,h)
+               h.insertAdjacentHTML("afterend","<h4>aaa</h4>")
+              h.remove();
         </script>
 </body>
 </html>
