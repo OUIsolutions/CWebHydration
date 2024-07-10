@@ -1,0 +1,18 @@
+
+
+
+[
+
+  {
+    "callback": "alert",
+    "args": {"text": "aaaa"}
+  },
+
+  {
+    "callback": "replace_element_by_id",
+    "args": {
+      "id": "aaa",
+      "value": "<h3>dddddddd</h3>"
+    }
+  }
+]
