@@ -38,7 +38,7 @@ CTextStack *private_CWebHyDrationBridge_create_script(CWebHyDrationBridge *self)
         CTextStack_format(function,"\t%s\n",self->callbacks->strings[i]);
     }
 
-    CTextStack_format(function,"\tawait send_to_server('%s',body)\n",self->route);
+    CTextStack_format(function,"\tawait private_cweb_send_to_server('%s',body)\n",self->route);
     CTextStack_format(function,"}\n");
     return function;
 }
