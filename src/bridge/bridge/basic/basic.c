@@ -13,6 +13,7 @@ CWebHyDrationBridge *private_newCWebHyDrationBridge(
     self->request = request;
 	self->callbacks = newCwebStringArray();
     self->garbage = newCwebStringArray();
+    self->max_body_size = CWEB_HYDRATION_DEFAULT_BODY_SIZE;
     return  self;
 }
 

@@ -6,12 +6,12 @@ void privateCWebHyDration_create_main_response(CWebHyDrationBridge *self){
     }
 }
 
-void CWebHyDration_add_response_callback(CWebHyDrationBridge *self,const char *callback,cJSON *args) {
+void CWebHyDration_add_response_callback(CWebHyDrationBridge *self, const char *callback, cJSON *args) {
     privateCWebHyDration_create_main_response(self);
     cJSON *obj = cJSON_CreateObject();
     cJSON_AddItemToArray(self->response,obj);
     cJSON_AddStringToObject(obj,PRIVATE_CWEB_HYDRATION_CALLBACK_KEY,callback);
-    cJSON_AddItemToObject(args,PRIVATE_CWEB_HYDRATION_ARGS_KEY,args);
+    cJSON_AddItemToObject(obj,PRIVATE_CWEB_HYDRATION_ARGS_KEY,args);
 
 }
 

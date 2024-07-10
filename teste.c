@@ -9,23 +9,24 @@ CwebHttpResponse *main_sever(CwebHttpRequest *request) {
 
     CWebHyDration *hydration = hy.newHyDration(request);
     CWebHyDrationBridge *increment = hy.create_bridge(hydration,"/increment",NULL);
-
+    hy.request_text_content_by_id(increment, "num");
 
     if(hy.is_the_route(increment)) {
         long num = hy.read_long(increment,"num");
 
         if(hy.error(increment)) {
-            CwebHttpResponse*response = hy.generate_error_response(increment);
+            CwebHttpResponse *response = hy.generate_error_response(increment);
             hy.free(hydration);
             return response;
         }
 
         CTextStack * text = newCTextStack(CTEXT_LINE_BREAKER,CTEXT_SEPARATOR);
         CTextScope(text,CTEXT_H3){
-            stack.format(text,"%d",num + num);
+            stack.format(text,"%d",num + 1);
         }
 
-        hy.replace_element_by_id_with_ctext_stack_cleaning_memory(increment,"h3",text);
+        hy.replace_element_by_id_with_ctext_stack_cleaning_memory(increment,"num",text);
+        hy.alert(increment, "O crlh que eu quiser");
         CwebHttpResponse *response = hy.generate_response(increment);
         return response;
     }
@@ -48,7 +49,6 @@ CwebHttpResponse *main_sever(CwebHttpRequest *request) {
 }
 
 
-CWebHydrationNamespace h;
 int main(int argc, char *argv[]){
     cweb = newCwebNamespace();
     stack = newCTextStackModule();

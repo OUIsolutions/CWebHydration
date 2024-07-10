@@ -1,10 +1,9 @@
 
 
-
-
-
-
 int privateCWebHyDration_read_json(CWebHyDrationBridge *self) {
+     if(self->error != NULL){
+          return -1;
+     }
      if(self->body) {
           return 0;
      }
