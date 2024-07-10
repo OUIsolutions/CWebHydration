@@ -11,7 +11,7 @@ CWebHyDrationBridge *private_newCWebHyDrationBridge(
     }
     self->route = strdup(route);
     self->request = request;
-	self->callback = privae
+	self->callbacks = newCwebStringArray();
     return  self;
 }
 
@@ -32,6 +32,10 @@ CTextStack *private_CWebHyDrationBridge_create_script(CWebHyDrationBridge *self)
     }
     CTextStack_format(function,"{\n");
     CTextStack_format(function,"\tlet body = {}\n");
+    for(int i= 0; i < self->callbacks->size;i++) {
+        CTextStack_format(function,"\t%s\n",self->callbacks->strings[i]);
+    }
+
     CTextStack_format(function,"\tawait send_to_server('%s',body)\n",self->route);
     CTextStack_format(function,"}\n");
     return function;

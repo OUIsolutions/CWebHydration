@@ -48,7 +48,8 @@ int main(int argc, char *argv[]){
     cweb = newCwebNamespace();
     stack = newCTextNamespace();
     CWebHyDration *hy = newCWebHyDration(NULL);
-    CWebHyDrationBridge *ponte = CWebHyDration_create_bridge(hy,"/increment",NULL);
+    CWebHyDrationBridge *increment = CWebHyDration_create_bridge(hy,"/increment",NULL);
+    CWebHyDrationBridge_add_function(increment,"get_input_id","'num'");
     char* script  = CWebHyDration_create_script(hy);
     printf("%s\n",script);
     return 0;
