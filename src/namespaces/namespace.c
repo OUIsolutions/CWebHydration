@@ -10,6 +10,7 @@ CWebHydrationNamespace newCWebHydrationNamespace() {
     //bridge
     //basic
     self.is_the_route = CWebHyDrationBridge_is_the_route;
+    self.call = CWebHyDrationBridge_call;
     //entries
     self.add_function = CWebHyDration_add_function;
     self.add_input_by_id = CWebHyDration_add_input_by_id;

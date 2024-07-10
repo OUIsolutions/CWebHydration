@@ -7,8 +7,10 @@ CWebHyDrationBridge *private_newCWebHyDrationBridge(
     );
 
 
+
 bool CWebHyDrationBridge_is_the_route(CWebHyDrationBridge *self);
 
+char *CWebHyDrationBridge_call(CWebHyDrationBridge *self,char *func_args,...);
 
 CTextStack *private_CWebHyDrationBridge_create_script(CWebHyDrationBridge *self);
 

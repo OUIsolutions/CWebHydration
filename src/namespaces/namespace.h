@@ -9,6 +9,8 @@ typedef struct CWebHydrationNamespace{
     //bridge
     //basic
     bool(*is_the_route)(CWebHyDrationBridge *self);
+    char *(*call)(CWebHyDrationBridge *self,char *func_args,...);
+
     //entries
     void (*add_function)(CWebHyDrationBridge *self,const char *function,const char *format, ...);
     void (*add_input_by_id)(CWebHyDrationBridge *self,const char *id);

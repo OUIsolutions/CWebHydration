@@ -12,6 +12,7 @@ CWebHyDrationBridge *private_newCWebHyDrationBridge(
     self->route = strdup(route);
     self->request = request;
 	self->callbacks = newCwebStringArray();
+    self->garbage = newCwebStringArray();
     return  self;
 }
 
@@ -41,6 +42,36 @@ CTextStack *private_CWebHyDrationBridge_create_script(CWebHyDrationBridge *self)
     return function;
 }
 
+char *CWebHyDrationBridge_call(CWebHyDrationBridge *self,char *func_args,...) {
+
+    CTextStack *callback= newCTextStack_string_empty();
+
+    if(self->name) {
+        CTextStack_format(callback,"%s",self->name);
+    }
+    else {
+        CTextStack *formatted_name = newCTextStack_string(self->route);
+        CTextStack_self_replace(formatted_name,"/","");
+        CTextStack_format(callback,"%tc",formatted_name);
+    }
+
+    if(func_args == NULL) {
+        CTextStack_format(callback,"();");
+        CwebStringArray_add(self->garbage,callback->rendered_text);
+        CTextStack_free(callback);
+        return self->garbage->strings[self->garbage->size-1];
+    }
+
+    va_list  args;
+    va_start(args,func_args);
+    char *result = private_CWebHydration_format_vaarg(func_args,args);
+    va_end(args);
+    CTextStack_format(callback,"(%sc);",result);
+    CwebStringArray_add(self->garbage,callback->rendered_text);
+    CTextStack_free(callback);
+    return self->garbage->strings[self->garbage->size-1];
+
+}
 void private_CWebHyDrationBridge_free(CWebHyDrationBridge *self) {
     free(self->route);
     if(self->name) {
@@ -58,5 +89,6 @@ void private_CWebHyDrationBridge_free(CWebHyDrationBridge *self) {
         cJSON_free(self->response);
     }
     CwebStringArray_free(self->callbacks);
+    CwebStringArray_free(self->garbage);
     free(self);
 }
