@@ -5,13 +5,17 @@ MAIN = "teste.c"
 OUT ?= "exec.out"
 
 
-ALL: pre_compile compile execute
+ALL: pre_compile build compile_test
 
 pre_compile:
+	@sh ${PRE_BUILD}
+	@echo ""
+
+build:
 	@./${BUILD}
 	@echo ""
 
-compile:
+compile_test:
 	@gcc ${MAIN} -o ${OUT}
 	@echo ""
 
@@ -19,6 +23,3 @@ execute:
 	@./${OUT}
 	@echo ""
 
-build_sh:
-	@sh ${PRE_BUILD}
-	@echo ""

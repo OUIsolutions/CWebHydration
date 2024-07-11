@@ -1,6 +1,9 @@
+//
+// Created by mateusmoutinho on 11/07/24.
+//
 
-#include "CWebStudio.h"
-#include "src/one.c"
+#include "../CWebStudio.h"
+#include "../CWebHyDration.h"
 CwebNamespace cweb;
 CTextStackModule stack;
 CWebHydrationNamespace hy;
@@ -12,7 +15,6 @@ CwebHttpResponse *main_sever(CwebHttpRequest *request) {
     hy.request_number_text_content_by_id(increment, "num");
 
     if(hy.is_the_route(increment)) {
-
         long num = hy.read_long(increment,"num");
 
         if(hy.error(increment)) {
@@ -36,13 +38,13 @@ CwebHttpResponse *main_sever(CwebHttpRequest *request) {
     CTextStack * text = stack.newStack(CTEXT_LINE_BREAKER,CTEXT_SEPARATOR);
     CTextScope(text,CTEXT_BODY){
         CTextScope(text,CTEXT_SCRIPT) {
-           stack.format(text,hy.create_script(hydration));
+            stack.format(text,hy.create_script(hydration));
         }
         CText$Scope(text,CTEXT_H3,"id='num'"){
             stack.text(text,"0");
         }
         CText$Scope(text,CTEXT_BUTTON,"onclick='%s'",hy.call(increment,NULL)){
-             stack.text(text,"increment");
+            stack.text(text,"increment");
         }
     }
     hy.free(hydration);

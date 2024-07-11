@@ -132,7 +132,7 @@ for(int snaunduwwqwetjsdvda = 0; snaunduwwqwetjsdvda < 1; ctext_close(s, t), ++s
 #define CTEXT_TRACK "track"
 #define CTEXT_EMBED "embed"
 #define CTEXT_PARAM "param"
-
+    
 
 
 
@@ -718,7 +718,7 @@ CJSON_PUBLIC(cJSON *) cJSON_Duplicate(const cJSON *item, cJSON_bool recurse);
 CJSON_PUBLIC(cJSON_bool) cJSON_Compare(const cJSON * const a, const cJSON * const b, const cJSON_bool case_sensitive);
 
 /* Minify a strings, remove blank characters(such as ' ', '\t', '\r', '\n') from strings.
- * The input pointer json cannot point to a read-only address area, such as a string constant,
+ * The input pointer json cannot point to a read-only address area, such as a string constant, 
  * but should point to a readable and writable address area. */
 CJSON_PUBLIC(void) cJSON_Minify(char *json);
 
@@ -767,9 +767,9 @@ CJSON_PUBLIC(void) cJSON_free(void *object);
 
 
 typedef struct CwebStringArray {
-  int size;
+  int size;         
 
-  char **strings;
+  char **strings;       
 
 }CwebStringArray; // End the structure with a semicolon
 
@@ -821,7 +821,7 @@ char *private_cweb_convert_url_encoded_text(const char *text);
 
 #ifdef CWEB_DEBUG
 #define cweb_print(...) printf(__VA_ARGS__);
-#else
+#else 
 #define cweb_print(...);
 #endif
 
@@ -903,7 +903,7 @@ void CwebHttpResponse_set_content(
 
 void CwebHttpResponse_add_header(
      CwebHttpResponse *self,
-    const char *key,
+    const char *key, 
     const char *value
 );
 
@@ -913,7 +913,7 @@ void CwebHttpResponse_free(struct CwebHttpResponse *self);
 
 
 
-#define CWEB_AUTO_SET_CONTENT NULL
+#define CWEB_AUTO_SET_CONTENT NULL 
 #define CWEB_OK  200
 #define CWEB_NOT_FOUND 404
 #define CWEB_BAD_REQUEST 400
@@ -1848,11 +1848,11 @@ const char * CTextStack_typeof_in_str(struct CTextStack *self){
     else if(current_type == CTEXT_LONG){
         return "long";
     }
-
+    
     else if(current_type == CTEXT_DOUBLE){
         return "double";
     }
-
+    
     else{
         return "invalid";
     }
@@ -1903,14 +1903,14 @@ void CTextStack_text(struct CTextStack *self, const char *text){
     }
 
     size_t text_size = strlen(text);
-
+    
     self->size += text_size;
     private_ctext_text_double_size_if_reachs(self);
-
+    
     memcpy(
             self->rendered_text + self->size - text_size,
         text,
-        text_size
+        text_size 
     );
     self->rendered_text[self->size] = '\0';
 }
@@ -5639,7 +5639,6 @@ char* cweb_replace_string(const char *target, const char *old_element, const cha
 unsigned char *cweb_load_any_content(const char * path,int *size,bool *is_binary){
     FILE *file = fopen(path,"rb");
     if(file == NULL){
-        free(file);
         return NULL;
     }
     fseek(file,0,SEEK_END);
@@ -5704,24 +5703,24 @@ const char *cweb_generate_content_type(const char *file_name){
 
         if(file_name_size < 2){
             return  "text/plain";
-        }
-
+        }    
+        
         //iterate in negative
         char *extension;
           for(int i = file_name_size -2; i >= 0;  i--){
 
            //makes extension to point to i
-
+            
             extension = (char*)&file_name[i+1];
             //if found a dot, break
             if(file_name[i] =='.'){
                 break;
-            }
+            }        
         }
         if(!extension){
             return  "text/plain";
         }
-
+               
         if(strcmp(extension, "html") == 0){
            return "text/html";
         }
@@ -5741,11 +5740,11 @@ const char *cweb_generate_content_type(const char *file_name){
         if(strcmp(extension,"pdf") == 0){
             return "application/pdf";
         }
-
+        
         else if(strcmp(extension, "css") == 0){
             return "text/css";
         }
-
+       
         else if(strcmp(extension, "js") == 0){
             return  "text/javascript";
         }
@@ -5765,7 +5764,7 @@ const char *cweb_generate_content_type(const char *file_name){
         else{
             return  "text/plain";
         }
-
+     
 }
 
 
@@ -5774,7 +5773,7 @@ char *private_cweb_convert_url_encoded_text(const char *text){
     int text_size = strlen(text);
     char *new_text = (char*)malloc(text_size + 1);
     int new_text_size = 0;
-
+    
     for(int i = 0; i < text_size; i++){
         if(text[i] == '%'){
             char hex[3];
@@ -5834,7 +5833,7 @@ unsigned char * CwebHttpRequest_read_content(struct CwebHttpRequest *self, long 
         return self->content;
     }
 
-
+   
     if (self->content_length == 0) {
         cweb_print("no content lenght provided\n");
         self->content_error = UNDEFINED_CONTENT;
@@ -5855,7 +5854,7 @@ unsigned char * CwebHttpRequest_read_content(struct CwebHttpRequest *self, long 
     setsockopt(self->socket, SOL_SOCKET, SO_RCVTIMEO, &timer, sizeof(timer));
 
     self->content = (unsigned char*) malloc(self->content_length + 2);
-
+    
     int total_bytes_received = 0;
     int bytes_remaining = self->content_length;
 
@@ -5948,7 +5947,7 @@ void CwebHttpRequest_set_content_string(struct CwebHttpRequest *self, const char
 
 
 void CwebHttpRequest_represent(struct CwebHttpRequest *self){
-
+    
     printf("url: %s\n", self->url);
     printf("route: %s\n", self->route);
     printf("method: %s\n", self->method);
@@ -6009,7 +6008,7 @@ void private_CwebHttpRequest_interpret_query_params(struct CwebHttpRequest *self
     bool key_found = false;
 
     for(int i =0; i<paramns_size; i++){
-
+        
 
 
         if(query_params[i] == '='&& key_found == false){
@@ -6030,11 +6029,11 @@ void private_CwebHttpRequest_interpret_query_params(struct CwebHttpRequest *self
             memset(value, 0, 5000);
             continue;
         }
-
+        
         if(key_found){
             value[strlen(value)] = query_params[i];
         }
-
+        
         else{
             key[strlen(key)] = query_params[i];
         }
@@ -6046,7 +6045,7 @@ void private_CwebHttpRequest_interpret_query_params(struct CwebHttpRequest *self
         CwebDict_set(self->params, sanitized_key, sanitized_value);
         free(sanitized_key);
         free(sanitized_value);
-
+        
     }
 
 }
@@ -6105,7 +6104,7 @@ int private_CwebHttpRequest_interpret_first_line(struct CwebHttpRequest *self, c
     //getting the method
 
     for (int i = 0; i < line_len; i++){
-
+        
         if(i >= CWEB_METHOD_MAX_SIZE){
             return INVALID_HTTP;
         }
@@ -6119,27 +6118,27 @@ int private_CwebHttpRequest_interpret_first_line(struct CwebHttpRequest *self, c
         method[i] = current_char;
 
     }
-
+    
     if(!method_end){
         return INVALID_HTTP;
     }
-
+    
     CwebHttpRequest_set_method(self,method);
 
-
+    
     //getting the url
     int url_start_position = 0;
     bool url_found = false;
-
+    
     for (int i = method_end; i < line_len; i++){
 
-
+        
         if((i - url_start_position) >= CWEB_URL_MAX_SIZE){
             return INVALID_HTTP;
         }
-
+        
         char current_char = first_line[i];
-
+        
         if(current_char == ' ' && url_found == true){
             break;
         }
@@ -6153,21 +6152,21 @@ int private_CwebHttpRequest_interpret_first_line(struct CwebHttpRequest *self, c
         if(url_found){
             url[i - url_start_position] = current_char;
         }
-
+         
     }
-
+    
     if(!url_found){
         return INVALID_HTTP;
     }
     CwebHttpRequest_set_url(self,url);
-
+    
     return 0;
 
 }
 
 
 int private_CwebHttpRequest_interpret_headders(struct CwebHttpRequest *self, struct CwebStringArray *line_headers){
-
+    
     for(int i = 1;i< line_headers->size;i++){
         char *current_line = line_headers->strings[i];
         int line_size = strlen(current_line);
@@ -6176,26 +6175,26 @@ int private_CwebHttpRequest_interpret_headders(struct CwebHttpRequest *self, str
         bool key_found = false;
         int value_start_point = 0;
 
-        for(int j = 0; j<line_size;j++){
+        for(int j = 0; j<line_size;j++){       
 
             if(key_found == false && j >= 1000){
                 return MAX_HEADER_SIZE_CODE;
-            }
+            }     
 
-
+            
             if(key_found == true && j > 10000){
                 return MAX_HEADER_SIZE_CODE;
             }
+            
 
-
-
+            
             if(current_line[j] == ':' && key_found == false){
 
                 key_found = true;
                 j+=1;
                 value_start_point = j;
                 continue;
-
+            
             }
 
 
@@ -6262,11 +6261,11 @@ int  CwebHttpRequest_parse_http_request(struct CwebHttpRequest *self){
             raw_entries[i - 1] == '\r' &&
                 raw_entries[i] == '\n'
            ){
-
+            
             break;
         }
         i++;
-
+    
     }
     if(i <= 4){return READ_ERROR;}
 
@@ -6313,7 +6312,7 @@ int  CwebHttpRequest_parse_http_request(struct CwebHttpRequest *self){
         CwebStringArray_free(lines);
         return READ_ERROR;
     }
-
+    
 
 
     int line_error = private_CwebHttpRequest_interpret_first_line(self, lines->strings[0]);
@@ -6326,8 +6325,8 @@ int  CwebHttpRequest_parse_http_request(struct CwebHttpRequest *self){
 
     int headers_error = private_CwebHttpRequest_interpret_headders(self, lines);
     CwebStringArray_free(lines);
-
-
+    
+    
     if(headers_error){
         return headers_error;
     }
@@ -6483,7 +6482,7 @@ void CwebDict_represent(CwebDict *dict){
 }
 
 void CwebDict_free(CwebDict *self){
-
+    
     for(int i = 0; i < self->size; i++){
         CwebKeyVal *key_val = self->keys_vals[i];
          CwebKeyVal_free(key_val);
@@ -6507,12 +6506,12 @@ struct CwebHttpResponse *newCwebHttpResponse(){
     self->exist_content = false;
     self->content = NULL;
     //self->add_header(self, "connection", "close");
-
+    
     return self;
 }
 
 char *CwebHttpResponse_generate_response(struct CwebHttpResponse*self){
-
+   
     char *response_string = (char*)malloc(20000);
     sprintf(response_string, "HTTP/1.1 %d OK\r\n", self->status_code);
     struct CwebDict *headers = self->headers;
@@ -6532,7 +6531,7 @@ char *CwebHttpResponse_generate_response(struct CwebHttpResponse*self){
         strcat(response_string, "\r\n");
     }
     strcat(response_string, "\r\n");
-
+        
     return response_string;
 }
 
@@ -6649,7 +6648,7 @@ struct CwebHttpResponse* cweb_send_var_html_cleaning_memory(char *content,int st
 
 
 struct CwebHttpResponse* cweb_send_file(const char *file_path,const char *content_type,int status_code){
-
+    
     int size = 0;
     unsigned char *content;
     content = cweb_load_binary_content(file_path, &size);
@@ -7295,7 +7294,7 @@ struct CwebServer  newCwebSever(int port , CwebHttpResponse *(*request_handler)(
     self.static_folder = "static";
     self.use_static = true;
     self.use_cache = true;
-
+    
     self.request_handler = request_handler;
 
     return self;
@@ -7325,7 +7324,7 @@ void private_cweb_execute_request_in_safty_mode(CwebServer  *self,int new_socket
     pid_t pid = fork();
     if (pid == 0){
         // means that the process is the child
-
+      
         alarm(self->function_timeout);
         private_CWebServer_execute_request(self,new_socket, client_ip);
         cweb_print("Request executed\n")
@@ -7341,9 +7340,9 @@ void private_cweb_execute_request_in_safty_mode(CwebServer  *self,int new_socket
     else{
         //means its the current process
         private_cweb_treat_response(self->use_static,new_socket);
-
+    
     }
-
+    
 }
 
 int  private_CWebServer_run_server_in_multiprocess(CwebServer *self){
@@ -7354,7 +7353,7 @@ int  private_CWebServer_run_server_in_multiprocess(CwebServer *self){
         perror("Faluire to create socket");
         exit(EXIT_FAILURE);
     }
-
+    
     struct sockaddr_in address;
     int addrlen = sizeof(address);
 
@@ -7369,7 +7368,7 @@ int  private_CWebServer_run_server_in_multiprocess(CwebServer *self){
         perror("Faluire to bind socket");
         return 1;
     }
-
+    
 
 
     // Waiting for connections
@@ -7378,7 +7377,7 @@ int  private_CWebServer_run_server_in_multiprocess(CwebServer *self){
         perror("Faluire to listen connections");
         exit(EXIT_FAILURE);
     }
-
+    
 
     // Main loop
     printf("Sever is running on port:%d\n", self->port);
@@ -7408,7 +7407,7 @@ int  private_CWebServer_run_server_in_multiprocess(CwebServer *self){
         // Accepting a new connection in every socket
         int client_socket = accept(
             port_socket,
-            (struct sockaddr *)&address,
+            (struct sockaddr *)&address, 
             (socklen_t *)&addrlen
         );
 
@@ -7427,7 +7426,7 @@ int  private_CWebServer_run_server_in_multiprocess(CwebServer *self){
 
         pid_t pid = fork();
         if (pid == 0){
-
+            
             // creates an new socket and parse the request to the new socket
             int new_socket = dup(client_socket);
 
@@ -7477,8 +7476,8 @@ int  private_CWebServer_run_server_in_multiprocess(CwebServer *self){
             signal(SIGCHLD, private_cweb_handle_child_termination);
             continue;
         }
-
-
+        
+  
     }
     return 0;
 }
@@ -7497,7 +7496,7 @@ void private_CWebServer_execute_request(CwebServer *self,int socket,const char *
 
 
     int result = CwebHttpRequest_parse_http_request(request);
-
+    
     if(result == INVALID_HTTP){
         cweb_print("Invalid HTTP Request\n");
         CwebHttpRequest_free(request);
@@ -7575,8 +7574,8 @@ void private_CWebServer_execute_request(CwebServer *self,int socket,const char *
     cweb_print("Response created\n");
 
 
-
-
+    
+    
 
     send(socket, response_str, strlen(response_str), MSG_NOSIGNAL);
 
@@ -7590,7 +7589,7 @@ void private_CWebServer_execute_request(CwebServer *self,int socket,const char *
         while (sent < response->content_length)
         {
             size_t chunk_size = response->content_length - sent;
-
+          
             ssize_t res = send(socket, response->content + sent, chunk_size, MSG_NOSIGNAL);
             if (res < 0)
             {
@@ -7600,7 +7599,7 @@ void private_CWebServer_execute_request(CwebServer *self,int socket,const char *
         }
     }
 
-
+    
     free(response_str);
     CwebHttpResponse_free(response);
     CwebHttpRequest_free(request);
@@ -7622,7 +7621,7 @@ int private_CWebServer_run_server_in_single_process(CwebServer *self) {
         perror("Faluire to create socket");
         exit(EXIT_FAILURE);
     }
-
+    
     struct sockaddr_in address;
     int addrlen = sizeof(address);
 
@@ -7637,7 +7636,7 @@ int private_CWebServer_run_server_in_single_process(CwebServer *self) {
     {
         printf("Faluire to bind socket to port %d\n", self->port);
         return 1;
-
+      
     }
 
     // Waiting for connections
@@ -7661,7 +7660,7 @@ int private_CWebServer_run_server_in_single_process(CwebServer *self) {
 
         cweb_actual_request++;
 
-        //clear every trash
+        //clear every trash 
 
         // Accepting a new connection in every socket
         int client_socket = accept(
@@ -7683,7 +7682,7 @@ int private_CWebServer_run_server_in_single_process(CwebServer *self) {
             perror("Faluire to accept connection");
             exit(EXIT_FAILURE);
         }
-
+        
         struct timeval timer1;
         timer1.tv_sec =  0;
         timer1.tv_usec =  0100000;
@@ -7699,8 +7698,8 @@ int private_CWebServer_run_server_in_single_process(CwebServer *self) {
             close(client_socket);  // Fechar o socket do cliente
             continue;
         }
-
-
+        
+        
         struct timeval timer2;
         long seconds =  (long)self->client_timeout;
         timer2.tv_sec =  seconds ;  // tempo em segundos
@@ -7716,7 +7715,7 @@ int private_CWebServer_run_server_in_single_process(CwebServer *self) {
 
         cweb_print("Closed Conection with socket %d\n", client_socket)
 
-
+        
     }
     return 0;
 }

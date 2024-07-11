@@ -9,8 +9,9 @@ local function main()
 
         local  amalgamation =  Generate_amalgamation_recursive(START_POINT)
 
-        dtw.write_file(RELEASE_FOLDER.."/"..OUTPUT_SINGLE_FILE,amalgamation)
-
+        dtw.write_file(OUTPUT_SINGLE_FILE,amalgamation)
+        Execute_tests()
+        Create_examples()
 end
 
 main()
