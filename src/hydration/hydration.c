@@ -21,7 +21,7 @@ char *CWebHyDration_create_script(CWebHyDration *self) {
     }
 
     self->script_text = newCTextStack_string_empty();
-    CTextStack_format(self->script_text,"%s",JS_CONTENT);
+    CTextStack_format(self->script_text,"%s",private_cweb_hydration_js_content);
 
     for(int i =0; i < self->all_bridges->size;i++) {
         CWebHyDrationBridge *current = self->all_bridges->elments[i];

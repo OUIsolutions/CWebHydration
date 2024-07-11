@@ -8,6 +8,6 @@ function Construct_js()
 		all = all.."\n"..dtw.load_file(content)
 	end
 	local in_hexa = clib.to_hexa(all)
-    local formmated = 'const char * JS_CONTENT = "'..in_hexa..'";'
+    local formmated = 'const char * private_cweb_hydration_js_content = "'..in_hexa..'";'
     return formmated
 end

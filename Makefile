@@ -5,7 +5,7 @@ MAIN = teste.c
 OUT ?= exec.out
 
 
-ALL: verify compile execute
+ALL: verify compile
 
 verify:
 ifeq ($(wildcard $(PATH_BUILD)),)
@@ -24,9 +24,7 @@ compile:
 	@gcc $(MAIN) -o $(OUT)
 	@echo ""
 
-execute:
-	@./$(OUT)
-	@echo ""
+
 
 build_sh:
 	@sh $(PRE_BUILD)
