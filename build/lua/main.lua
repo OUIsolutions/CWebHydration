@@ -12,6 +12,8 @@ local function main()
         dtw.write_file(OUTPUT_SINGLE_FILE,amalgamation)
         Execute_tests()
         Create_examples()
+       local new_readme =  Create_readme();
+       dtw.write_file("README.md",new_readme)
 end
 
 main()

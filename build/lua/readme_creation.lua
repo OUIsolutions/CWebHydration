@@ -19,7 +19,7 @@ local function is_codeof_at_point(content,index)
 end
 
 
----@return string |nil
+---@return string
 function Create_readme()
     local content = dtw.load_file("build/INTERNAL.md")
     if content == nil then

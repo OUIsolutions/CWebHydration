@@ -6,9 +6,11 @@ function Create_examples()
 	   test_tree.each(function (tree_part)
 	        local path = tree_part.path
 
-	        if path.get_name() ~= "exec.c" then
-	        	return
-	        end
+
+            local extension = path.get_extension()
+            if extension ~= "c" then
+            	return
+            end
             local content = tree_part.get_value()
             local formated_content = clib.replace(content,"../","")
             tree_part.set_value(formated_content)
@@ -16,7 +18,7 @@ function Create_examples()
             path.remove_dir_at(TESTS_FOLDER)
 
             tree_part.hardware_write()
-            clib.print(ANSI_GREEN.."created example"..path.get_full_path().."\n")
+            clib.print(ANSI_GREEN.."created example:"..path.get_full_path().."\n")
 	   end)
 	   test_tree.commit()
 end

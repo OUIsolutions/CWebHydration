@@ -1,9 +1,7 @@
-//
-// Created by mateusmoutinho on 11/07/24.
-//
 
-#include "../CWebStudio.h"
-#include "../CWebHyDration.h"
+
+#include "CWebStudio.h"
+#include "CWebHyDration.h"
 CwebNamespace cweb;
 CTextStackModule stack;
 CWebHydrationNamespace hy;
