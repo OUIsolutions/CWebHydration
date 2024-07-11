@@ -1,25 +1,33 @@
+BUILD = build.out
+PATH_BUILD = $(wildcard $(BUILD))
+PRE_BUILD = pre_build.sh
+MAIN = teste.c
+OUT ?= exec.out
 
-BUILD = "build.out"
-PRE_BUILD = "pre_build.sh"
-MAIN = "teste.c"
-OUT ?= "exec.out"
 
+ALL: verify compile execute
 
-ALL: pre_compile build compile_test
+verify:
+ifeq ($(wildcard $(PATH_BUILD)),)
+	@$(MAKE) build_sh pre_compile
+	@echo ""
+else
+	@$(MAKE) pre_compile 
+	@echo ""
+endif
 
 pre_compile:
-	@sh ${PRE_BUILD}
+	@./$(BUILD)
 	@echo ""
 
-build:
-	@./${BUILD}
-	@echo ""
-
-compile_test:
-	@gcc ${MAIN} -o ${OUT}
+compile:
+	@gcc $(MAIN) -o $(OUT)
 	@echo ""
 
 execute:
-	@./${OUT}
+	@./$(OUT)
 	@echo ""
 
+build_sh:
+	@sh $(PRE_BUILD)
+	@echo ""
