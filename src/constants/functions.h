@@ -12,3 +12,5 @@
 
 #define PRIVATE_CWEB_HYDRATION_GET_TEXT_CONTENT_BY_ALL_ID "private_cweb_hydration_get_text_content_by_all_id"
 
+
+#define PRIVATE_CWEB_REPLACE_ARGS_IN_BODY "private_cweb_replace_args_in_body"

@@ -23,7 +23,7 @@ bool   CWebHyDrationBridge_is_the_route(CWebHyDrationBridge *self) {
 
 CTextStack *private_CWebHyDrationBridge_create_script(CWebHyDrationBridge *self) {
     CTextStack *function = newCTextStack_string_empty();
-    CTextStack_format(function,"async function ");
+    CTextStack_format(function,"\nasync function ");
     if(self->name) {
         CTextStack_format(function,"%s",self->name);
     }
@@ -34,12 +34,14 @@ CTextStack *private_CWebHyDrationBridge_create_script(CWebHyDrationBridge *self)
     }
     CTextStack_format(function,"{\n");
     CTextStack_format(function,"\tlet body = {}\n");
+    CTextStack_format(function,"\t%s(body,args);\n",PRIVATE_CWEB_REPLACE_ARGS_IN_BODY);
+
     for(int i= 0; i < self->callbacks->size;i++) {
         CTextStack_format(function,"\t%s\n",self->callbacks->strings[i]);
     }
 
     CTextStack_format(function,"\tawait private_cweb_send_to_server('%s',body)\n",self->route);
-    CTextStack_format(function,"}\n");
+    CTextStack_format(function,"};\n");
     return function;
 }
 
@@ -57,7 +59,7 @@ char *CWebHyDrationBridge_call(CWebHyDrationBridge *self,char *func_args,...) {
     }
 
     if(func_args == NULL) {
-        CTextStack_format(callback,"();");
+        CTextStack_format(callback,"([]);");
         CwebStringArray_add(self->garbage,callback->rendered_text);
         CTextStack_free(callback);
         return self->garbage->strings[self->garbage->size-1];
@@ -67,7 +69,7 @@ char *CWebHyDrationBridge_call(CWebHyDrationBridge *self,char *func_args,...) {
     va_start(args,func_args);
     char *result = private_CWebHydration_format_vaarg(func_args,args);
     va_end(args);
-    CTextStack_format(callback,"(%sc);",result);
+    CTextStack_format(callback,"([%sc]);",result);
     CwebStringArray_add(self->garbage,callback->rendered_text);
     CTextStack_free(callback);
     return self->garbage->strings[self->garbage->size-1];
